@@ -3,10 +3,10 @@ import React from 'react'
 const InfoPage = props => {
     return (
         <article style={styles.article}>
-            <p style={styles.info}>{props.id}</p>
-            <p style={styles.info}>{props.number}</p>
-            <p style={styles.info}>{props.courseid}</p>
-            <p style={styles.info}>{props.rotation}</p>
+            <p style={styles.info}>{props.player_name}</p>
+            <p style={styles.info}>{props.position}</p>
+            <p style={styles.info}>{props.num_events}</p>
+            <p style={styles.info}>{props.total_points}</p>
         </article>
     )
 }
@@ -22,10 +22,12 @@ const styles = {
         width: '50%',
         height: '300px',
         margin: '0 25%',
-        border: '3px solid #25A5D0'
+        border: '.5px solid #000000',
+        borderRadius: '15px'
     },
     info: {
         width: '100%',
-        height: '10%'
+        height: '10%',
+        color: 'black'
     }
 }

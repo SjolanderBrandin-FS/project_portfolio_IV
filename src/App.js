@@ -26,6 +26,6 @@ const styles = {
         flexDirection: 'column',
         background: '#919191',
         fontSize: '1rem',
-        borderRadius: '2%',
+        borderRadius: '15px',
     }
 }

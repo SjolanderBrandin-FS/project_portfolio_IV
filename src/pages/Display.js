@@ -6,9 +6,7 @@ class Settings extends Component {
         userData: [],
         isLoaded: true
     }
-    // function Settings(){
-    // const [userData] = useState([])
-    // const [isLoaded] = useState([{ isLoaded: true }])
+
 
     componentDidMount() {
         const profile = this.state.isLoaded
@@ -33,20 +31,19 @@ class Settings extends Component {
                 'X-RapidAPI-Host': 'golf-leaderboard-data.p.rapidapi.com'
             }
         }
-        fetch('https://api.golfbert.com/v1/courses/4803/holes', options)
+        fetch('https://golf-leaderboard-data.p.rapidapi.com/world-rankings', options)
             .then(response => response.json())
-            // .catch(err =>{
-            //  console.log(`The error - ${err} has occured`);   
-            // })
-            // Now Map through the Array
-            .then(responseJSON => responseJSON.results.map(data => ({
-                //setGolfData({
-                id: `${data.id}`,
-                number: `${data.number}`,
-                courseID: `${data.courseid}`,
-                rotation: `${data.rotation}`
-            }
-            )))
+            .then(responseJSON => {
+
+                console.log(responseJSON)
+
+                return responseJSON.results.rankings.map(data => ({
+                    player_name: `${data.player_name}`,
+                    numEvents: `${data.num_events}`,
+                    totalPoints: `${data.total_points}`
+                }
+                ))
+            })
             .then(golfData => this.setState({
                 golfData,
                 isLoaded: false
@@ -55,51 +52,19 @@ class Settings extends Component {
 
     }
 
-    // useEffect(() => {
-    //     const url = 'https://randomuser.me/api/'
 
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await fetch(url)
-    //             const json = await response.json()
-    //             console.log(json.slip.userData)
-    //             isLoaded(json.slip.userData)
-    //         } catch (error) {
-    //             console.log('error', error)
-    //         }
-    //     }
-    //     fetchData(url)
-    //         .catch(err => {
-    //             console.log(`The error - ${err} has occured`)
-    //         })
-    //         .then(responseJSON => responseJSON.results.map(user => ({
-    //             userData: {
-    //                 firstName: `${user.name.first}`,
-    //                 lastName: `${user.name.last}`,
-    //                 street: `${user.location.street}`,
-    //                 city: `${user.location.city}`,
-    //                 state: `${user.location.state}`,
-    //                 postcode: `${user.location.postcode}`,
-    //                 username: `${user.login.username}`,
-    //                 password: `${user.login.password}`,
-    //                 phone: `${user.phone}`,
-    //                 picture: `${user.picture.large}`,
-    //             }
-    //         })))
-
-    // })
     render() {
         const { isLoaded, golfData } = this.state
         return (
             <section style={styles.container} >
                 <h1 style={styles.h1}>Display</h1>
                 {!isLoaded && golfData.length > 0 ? golfData.map(data => {
-                    const { number, courseid, rotation, id } = data
+                    const { player_name, num_Events, total_points, position } = data
                     return <InfoPage
-                        key={id}
-                        Number={number}
-                        courseID={courseid}
-                        Rotation={rotation}
+                        key={position}
+                        player_name={player_name}
+                        numEvents={num_Events}
+                        totalPoints={total_points}
                     />
                 }) : null
                 }
@@ -113,7 +78,7 @@ const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        height: '100rem',
+        height: '100%',
         color: '#25A5D0'
     },
     h1: {
