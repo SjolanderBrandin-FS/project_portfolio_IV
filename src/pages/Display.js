@@ -38,9 +38,10 @@ class Settings extends Component {
                 console.log(responseJSON)
 
                 return responseJSON.results.rankings.map(data => ({
+                    position: `${data.position}`,
                     player_name: `${data.player_name}`,
-                    numEvents: `${data.num_events}`,
-                    totalPoints: `${data.total_points}`
+                    num_events: `${data.num_events}`,
+                    total_points: `${data.total_points}`
                 }
                 ))
             })
@@ -58,13 +59,14 @@ class Settings extends Component {
         return (
             <section style={styles.container} >
                 <h1 style={styles.h1}>Display</h1>
-                {!isLoaded && golfData.length > 0 ? golfData.map(data => {
-                    const { player_name, num_Events, total_points, position } = data
+                {!isLoaded && golfData.length < 1000 ? golfData.map(data => {
+                    const { player_name, num_events, total_points, position } = data
                     return <InfoPage
                         key={position}
                         player_name={player_name}
-                        numEvents={num_Events}
-                        totalPoints={total_points}
+                        position={position}
+                        num_events={num_events}
+                        total_points={total_points}
                     />
                 }) : null
                 }
