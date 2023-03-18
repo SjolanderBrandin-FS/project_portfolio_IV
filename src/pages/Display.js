@@ -12,8 +12,9 @@ class Settings extends Component {
         const profile = this.state.isLoaded
         if (profile) {
             this.fetchData()
+            console.log('Settings Page Loaded')
         } else {
-            console.log(`Can not load the Settings Page`)
+            console.log('Can not load the Settings Page')
         }
 
     }
