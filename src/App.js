@@ -1,6 +1,6 @@
 import React from 'react'
 // Addition Imports ========================================|
-import Display from './pages/Display'
+import Main from './pages/Main'
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
@@ -9,13 +9,10 @@ function App() {
     return (
         <div style={styles.container} >
             <Routes>
-                <Route path="/" element={<Display />} />
+                <Route path="/" element={<Main />} />
             </Routes>
         </div>
     )
-
-
-
 }
 
 export default App

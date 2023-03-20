@@ -19,15 +19,15 @@ const styles = {
         flexDirection: 'column',
         justifyContent: 'start',
         backgroundColor: '#25A5D0',
-        width: '50%',
+        width: '200px',
         height: '300px',
-        margin: '0 25%',
+        margin: '5px',
         border: '.5px solid #000000',
         borderRadius: '15px'
     },
     info: {
         width: '100%',
         height: '10%',
-        color: 'black'
+        color: 'white'
     }
 }
