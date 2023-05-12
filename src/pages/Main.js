@@ -21,36 +21,29 @@ class Settings extends Component {
     }
 
 
-    fetchData() {
-        this.setState({
-            isLoaded: true,
-            golfData: []
-        })
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': 'f094955108msh3a73e29521319dbp16a0afjsnb11f326d6d03',
-                'X-RapidAPI-Host': 'golf-leaderboard-data.p.rapidapi.com'
-            }
-        }
-        fetch('https://golf-leaderboard-data.p.rapidapi.com/world-rankings', options)
-            .then(response => response.json())
-            .then(responseJSON => responseJSON.results.rankings.map(data => ({
-                // return responseJSON.results.rankings.map(data => ({   
-                // }
-                // ))
-                position: `${data.position}`,
-                player_name: `${data.player_name}`,
-                num_events: `${data.num_events}`,
-                total_points: `${data.total_points}`
-            })))
-            .then(golfData => this.setState({
-                golfData,
-                isLoaded: false
-            }))
-            .catch(err => console.log(err))
+    // fetchData() {
+    //     this.setState({
+    //         isLoaded: true,
+    //         golfData: []
+    //     })
+    //     fetch()
+    //         .then(response => response.json())
+    //         .then(responseJSON => responseJSON.results.map(data => ({
+    //             // return responseJSON.results.rankings.map(data => ({   
+    //             // }
+    //             // ))
+    //             position: `${data.position}`,
+    //             player_name: `${data.player_name}`,
+    //             num_events: `${data.num_events}`,
+    //             total_points: `${data.total_points}`
+    //         })))
+    //         .then(golfData => this.setState({
+    //             golfData,
+    //             isLoaded: false
+    //         }))
+    //         .catch(err => console.log(err))
 
-    }
+    // }
 
 
     render() {
@@ -60,7 +53,7 @@ class Settings extends Component {
                 <Header pgTitle='Main Page' />
                 <h1 style={styles.h1}>Professional Golf Rankings</h1>
                 <div style={styles.cardCont}>
-                    {!isLoaded && golfData.length < 999 ? golfData.map(data => {
+                    {/* {!isLoaded && golfData.length < 999 ? golfData.map(data => {
                         const { player_name, num_events, total_points, position } = data
                         return <InfoPage
                             key={position}
@@ -70,7 +63,7 @@ class Settings extends Component {
                             total_points={'Total Points: ' + total_points}
                         />
                     }) : null
-                    }
+                    } */}
                 </div>
             </main>
 
