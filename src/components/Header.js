@@ -4,9 +4,6 @@ import { FaSearch, FaEnvelope, FaBell } from 'react-icons/fa'
 
 //header component
 const MyHeader = props => {
-    function setClick() {
-        window.location.href = '/settings'
-    }
     return (
         <header style={styles.header}>
             <h1 style={styles.left}>Sjotime Development</h1>
