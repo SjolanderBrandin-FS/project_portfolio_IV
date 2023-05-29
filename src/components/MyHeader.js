@@ -1,4 +1,5 @@
 import React from "react"
+import MyNav from "./MyNav"
 //Import Images and Icons:
 
 //header component
@@ -33,8 +34,8 @@ const styles = {
     },
     right: {
         display: 'flex',
-        marginRight: '10px',
-        fontSize: '35px',
+        marginRight: '30px',
+        fontSize: '25px',
         cursor: 'default'
     }
 }

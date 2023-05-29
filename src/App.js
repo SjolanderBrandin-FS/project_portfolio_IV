@@ -51,6 +51,6 @@ const styles = {
         height: 'auto',
         width: '100%',
         background: '#0B3954',
-        border: '1px solid silver'
+        borderLeft: '1px solid silver'
     }
 }

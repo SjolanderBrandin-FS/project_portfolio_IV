@@ -1,6 +1,7 @@
 import React from 'react'
+import RemoveBtn from './RemoveBtn'
 
-const InfoCard = props => {
+const FavCard = props => {
 
     return (
         <article style={styles.article}>
@@ -17,13 +18,13 @@ const InfoCard = props => {
                 <p style={styles.desc}>Total Points: </p>
                 <p style={styles.info}>{props.total_points}</p>
             </div>
-            <button style={styles.button} onClick={props.favorite_click}>Add to Favorites</button>
+            <RemoveBtn btnText="Remove" onClick={props.remove_click} />
         </article>
     )
 
 }
 
-export default InfoCard
+export default FavCard
 
 const styles = {
     article: {
@@ -45,15 +46,6 @@ const styles = {
         color: '#464646',
         textAlign: 'start',
         textDecoration: 'underline'
-    },
-    button: {
-        display: 'block',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        marginTop: '30px',
-        width: '75%',
-        color: 'silver',
-        backgroundColor: '#0B3954'
     },
     div: {
         display: 'flex',

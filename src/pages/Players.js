@@ -3,7 +3,7 @@ import InfoCard from '../components/InfoCard'
 
 class Players extends Component {
     state = {
-        userData: [],
+        golfData: [],
         isLoaded: true
     }
 
@@ -11,9 +11,10 @@ class Players extends Component {
     componentDidMount() {
         const profile = this.state.isLoaded
         if (profile) {
-            this.fetchData()
-            console.log('Main Page Loaded')
-        } else {
+            this.fetchData();
+            console.log('Main Page Loaded');
+        }
+        else {
             console.log('Can not load the Main Page')
         }
 
@@ -35,8 +36,8 @@ class Players extends Component {
         };
         fetch(url, options)
             .then(response => response.json())
-            .then(responseJSON => responseJSON.results.rankings.map((data) => {
-                console.log(data)
+            .then(responseJSON => responseJSON.results.rankings.map(data => {
+                // console.log(data)
                 return {
                     player_id: `${data.player_id}`,
                     player_name: `${data.player_name}`,
@@ -57,18 +58,27 @@ class Players extends Component {
 
     // Need to add click function to 'add' button
     // when press, it will add the player card to the favorites page/array.
+    onFavoriteClick = (pData) => {
+        console.log("FavoriteClick", pData);
+        let str = localStorage.getItem("myGolfData")
+        let favoriteData = JSON.parse(str) || []
+        if (!pData.player_name == favoriteData.player_name || favoriteData.length <= 9) {
+            favoriteData.push(pData)
+            localStorage.setItem("myGolfData", JSON.stringify(favoriteData))
+            console.log(favoriteData)
+        } else {
+            console.log("Player already added to Favorites")
+            alert("Player already added to Favorites or You already have 10 favorites saved.")
+        }
 
+    }
 
     render() {
-        const { isLoaded, golfData } = this.state
         return (
             <main style={styles.container}>
                 <h1 style={styles.h1}>Professional Golf Rankings</h1>
                 <div style={styles.cardCont}>
-                    {!isLoaded && golfData.length < 999 ? golfData.map((data) => {
-
-
-
+                    {this.state.golfData.map(data => {
                         const { player_id, player_name, num_events, total_points, position } = data
                         return <InfoCard
                             key={player_id}
@@ -76,8 +86,11 @@ class Players extends Component {
                             position={position}
                             num_events={num_events}
                             total_points={total_points}
+                            is_favorite={false}
+                            //fav_click written this way to pass in properties.
+                            favorite_click={() => { this.onFavoriteClick(data) }}
                         />
-                    }) : null
+                    })
                     }
                 </div>
             </main>
@@ -94,7 +107,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'center',
-        height: '90vh',
+        height: 'auto',
         overflow: 'scroll'
 
     },
@@ -103,7 +116,7 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        height: 'auto'
+        height: '81vh'
     },
     h1: {
         color: 'silver',
