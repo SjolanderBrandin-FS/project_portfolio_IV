@@ -4,7 +4,7 @@ import Players from './pages/Players'
 import Favorites from './pages/Favorites'
 import MyHeader from './components/MyHeader'
 import MyNav from './components/MyNav'
-import { Routes, Route } from 'react-router-dom'
+import { HashRouter as Routes, Route } from 'react-router-dom'
 import './App.css'
 
 // Decided to keep this format to create an easier and smoother experience with
