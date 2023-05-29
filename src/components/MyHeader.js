@@ -1,5 +1,4 @@
 import React from "react"
-import MyNav from "./MyNav"
 //Import Images and Icons:
 
 //header component

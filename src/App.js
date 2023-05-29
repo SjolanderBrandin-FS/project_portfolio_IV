@@ -4,7 +4,7 @@ import Players from './pages/Players'
 import Favorites from './pages/Favorites'
 import MyHeader from './components/MyHeader'
 import MyNav from './components/MyNav'
-import { HashRouter as Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
 
 // Decided to keep this format to create an easier and smoother experience with
@@ -19,9 +19,9 @@ function App() {
                 <MyNav />
                 <div style={styles.chartCont}>
                     <Routes>
-                        <Route path="/" element={<Players />} />
-                        <Route path="players" element={<Players />} />
-                        <Route path="favorites" element={<Favorites />} />
+                        <Route exact path={"/"} component={Players} />
+                        <Route exact path={"/players"} component={<Players />} />
+                        <Route exact path={"/favorites"} component={<Favorites />} />
                     </Routes>
                 </div>
             </main>

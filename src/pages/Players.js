@@ -62,7 +62,7 @@ class Players extends Component {
         console.log("FavoriteClick", pData);
         let str = localStorage.getItem("myGolfData")
         let favoriteData = JSON.parse(str) || []
-        if (!pData.player_name == favoriteData.player_name || favoriteData.length <= 9) {
+        if (!pData.player_name === favoriteData.player_name || favoriteData.length <= 9) {
             favoriteData.push(pData)
             localStorage.setItem("myGolfData", JSON.stringify(favoriteData))
             console.log(favoriteData)
