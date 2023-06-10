@@ -4,7 +4,8 @@ import InfoCard from '../components/InfoCard'
 class Players extends Component {
     state = {
         golfData: [],
-        isLoaded: true
+        isLoaded: true,
+        limit: 10
     }
 
 
@@ -26,7 +27,7 @@ class Players extends Component {
             isLoaded: true,
             golfData: []
         })
-        const url = 'https://golf-leaderboard-data.p.rapidapi.com/world-rankings';
+        const url = process.env.PUBLIC_URL + "/data.json";
         const options = {
             method: 'GET',
             headers: {
@@ -72,13 +73,17 @@ class Players extends Component {
         }
 
     }
-
+    incrementLimit = () => {
+        let newLimit = this.state.limit + 10;
+        this.setState({ limit: newLimit });
+        this.render();
+    }
     render() {
         return (
             <main style={styles.container}>
                 <h1 style={styles.h1}>Professional Golf Rankings</h1>
                 <div style={styles.cardCont}>
-                    {this.state.golfData.map(data => {
+                    {this.state.golfData.slice(0, this.state.limit).map(data => {
                         const { player_id, player_name, num_events, total_points, position } = data
                         return <InfoCard
                             key={player_id}
@@ -92,6 +97,9 @@ class Players extends Component {
                         />
                     })
                     }
+                </div>
+                <div style={styles.btnCon}>
+                    <button onClick={this.incrementLimit} style={styles.btn}>Show More...</button>
                 </div>
             </main>
 
@@ -108,7 +116,7 @@ const styles = {
         flexDirection: 'column',
         textAlign: 'center',
         height: 'auto',
-        overflow: 'scroll'
+
 
     },
     cardCont: {
@@ -116,11 +124,31 @@ const styles = {
         flexDirection: 'row',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        height: '81vh'
+        height: '81vh',
+        overflow: 'scroll'
     },
     h1: {
         color: 'silver',
         fontStyle: 'italic',
         fontWeight: 'normal'
+    },
+    btn: {
+        fontSize: '20px',
+        backgroundColor: 'lightgrey',
+        color: '#0B3954',
+        margin: '5px',
+        padding: '5px',
+        height: '35px',
+        width: '300px',
+        border: '1px solid #464646',
+        borderRadius: '15px',
+        cursor: 'pointer',
+        boxShadow: '0 4px 8px 0 silver'
+
+    },
+    btnCon: {
+        display: 'block',
+        justifyContent: 'flex-center'
+
     }
 }

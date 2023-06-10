@@ -19,11 +19,12 @@ class Favorites extends Component {
     onRemoveClick = (rList) => {
         console.log("RemoveClick", rList);
         const newRList = [...this.state.favList]
-        newRList.splice(rList.player_id, 1)
+        let idx = newRList.findIndex(person => person.player_id === rList)
+        newRList.splice(idx, 1)
         this.setState(() => ({
             favList: newRList
         }))
-
+        localStorage.setItem("myGolfData", JSON.stringify(newRList))
     }
 
     render() {

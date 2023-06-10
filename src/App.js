@@ -19,9 +19,9 @@ function App() {
                 <MyNav />
                 <div style={styles.chartCont}>
                     <Routes>
-                        <Route exact path={"/"} component={Players} />
-                        <Route exact path={"/players"} component={<Players />} />
-                        <Route exact path={"/favorites"} component={<Favorites />} />
+                        <Route exact path={"/"} element={<Players />} />
+                        <Route exact path={"/players"} element={<Players />} />
+                        <Route exact path={"/favorites"} element={<Favorites />} />
                     </Routes>
                 </div>
             </main>

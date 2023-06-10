@@ -1,16 +1,11 @@
 import React from "react"
+import { NavLink } from "react-router-dom"
 
 const MyNav = props => {
-    function playClick() {
-        window.location.href = '/players'
-    }
-    function favsClick() {
-        window.location.href = '/favorites'
-    }
     return (
         <nav style={styles.navCont}>
-            <button style={styles.link} onClick={playClick}> Players</button>
-            <button style={styles.link} onClick={favsClick}> Favorites</button>
+            <NavLink style={styles.link} to="/players"> Players</NavLink>
+            <NavLink style={styles.link} to="/favorites"> Favorites</NavLink>
         </nav>
     )
 }
@@ -28,9 +23,10 @@ const styles = {
         backgroundColor: 'lightgrey',
         color: '#0B3954',
         marginTop: '50px',
+        padding: '5px',
         width: 'auto',
         border: '1px solid #464646',
-        borderRadius: '45px',
+        borderRadius: '15px',
         cursor: 'pointer',
         boxShadow: '0 4px 8px 0 silver'
     }
